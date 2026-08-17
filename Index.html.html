@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Eco + BM Exam Plan</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Eco + BM">
+<meta name="theme-color" content="#E9EAE4">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' fill='%23E9EAE4'/%3E%3Ctext x='90' y='78' font-family='Helvetica,Arial' font-size='62' font-weight='700' fill='%23A63A2B' text-anchor='middle'%3EE%3C/text%3E%3Ctext x='90' y='146' font-family='Helvetica,Arial' font-size='62' font-weight='700' fill='%231B4B5A' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#E9EAE4;
+    --card:#F3F4EE;
+    --ink:#14161A;
+    --muted:#6A7069;
+    --rule:#CDCFC6;
+    --eco:#A63A2B;
+    --bm:#1B4B5A;
+    --sp:16px;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"IBM Plex Sans",system-ui,sans-serif;
+    font-size:15px;line-height:1.5;
+    padding-bottom:calc(80px + env(safe-area-inset-bottom));
+  }
+  header{padding-top:env(safe-area-inset-top)}
+  .wrap{max-width:780px;margin:0 auto;padding:0 var(--sp)}
+
+  /* ---- spine / header ---- */
+  header{
+    position:sticky;top:0;z-index:20;
+    background:var(--paper);
+    border-bottom:1px solid var(--rule);
+  }
+  .spine{display:flex;gap:0;padding:12px var(--sp) 0}
+  .counter{flex:1;padding:0 0 10px}
+  .counter + .counter{border-left:1px solid var(--rule);padding-left:14px}
+  .counter .lbl{
+    font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--muted);display:block;margin-bottom:2px;
+  }
+  .counter .num{
+    font-family:"Bricolage Grotesque",sans-serif;font-weight:800;
+    font-size:clamp(34px,11vw,52px);line-height:.88;letter-spacing:-.03em;display:block;
+  }
+  .counter .sub{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--muted);letter-spacing:.03em}
+  #cEco .num{color:var(--eco)} #cBm .num{color:var(--bm)}
+  .meter{height:3px;background:var(--rule);position:relative}
+  .meter i{position:absolute;inset:0 auto 0 0;background:var(--ink);width:0;transition:width .3s}
+  .meterlbl{
+    display:flex;justify-content:space-between;padding:6px var(--sp) 9px;
+    font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.06em;color:var(--muted);
+  }
+  .jump{background:none;border:1px solid var(--rule);border-radius:2px;font:inherit;
+    font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.06em;
+    padding:2px 8px;color:var(--ink);cursor:pointer}
+  .jump:hover{background:var(--ink);color:var(--paper)}
+
+  /* ---- intro ---- */
+  .intro{padding:26px 0 8px}
+  h1{
+    font-family:"Bricolage Grotesque",sans-serif;font-weight:800;
+    font-size:clamp(28px,8vw,44px);line-height:1.02;letter-spacing:-.035em;margin:0 0 12px;
+  }
+  .lede{color:var(--muted);max-width:56ch;margin:0 0 18px}
+  .rules{border-top:1px solid var(--rule);padding-top:14px;margin-bottom:8px}
+  .rules h2{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--muted);font-weight:500;margin:0 0 8px}
+  .rules ol{margin:0;padding-left:1.1em}
+  .rules li{margin-bottom:6px}
+
+  /* ---- phase ---- */
+  .phase{margin:34px 0 4px;border-top:2px solid var(--ink);padding-top:8px}
+  .phase .no{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.14em;color:var(--muted)}
+  .phase h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:22px;
+    letter-spacing:-.02em;margin:2px 0 4px}
+  .phase p{margin:0 0 4px;color:var(--muted);font-size:14px;max-width:58ch}
+
+  /* ---- day ---- */
+  .day{border-bottom:1px solid var(--rule);padding:16px 0}
+  .day.today{background:var(--card);margin:0 -12px;padding:16px 12px;border-left:3px solid var(--ink)}
+  .day.past{opacity:.42}
+  .dhead{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:10px}
+  .ddate{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:17px;letter-spacing:-.01em}
+  .dtick{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--muted);letter-spacing:.05em;white-space:nowrap}
+  .dnote{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.05em;
+    text-transform:uppercase;color:var(--ink);background:var(--rule);
+    display:inline-block;padding:2px 7px;margin-bottom:10px}
+  .dnote.hot{background:var(--ink);color:var(--paper)}
+
+  .blk{border-left:2px solid;padding-left:11px;margin-bottom:12px}
+  .blk.e{border-color:var(--eco)} .blk.b{border-color:var(--bm)}
+  .blk .tag{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.16em;
+    text-transform:uppercase;display:block;margin-bottom:5px}
+  .blk.e .tag{color:var(--eco)} .blk.b .tag{color:var(--bm)}
+  .t{display:flex;gap:9px;align-items:flex-start;padding:3px 0;cursor:pointer}
+  .t input{
+    appearance:none;-webkit-appearance:none;flex:0 0 auto;
+    width:15px;height:15px;margin:3px 0 0;border:1.5px solid var(--muted);
+    border-radius:1px;background:transparent;cursor:pointer;position:relative;
+  }
+  .t input:checked{background:var(--ink);border-color:var(--ink)}
+  .t input:checked::after{
+    content:"";position:absolute;left:4px;top:1px;width:4px;height:8px;
+    border:solid var(--paper);border-width:0 1.6px 1.6px 0;transform:rotate(42deg);
+  }
+  .t input:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+  .t span{font-size:14.5px}
+  .t input:checked + span{text-decoration:line-through;color:var(--muted)}
+
+  footer{margin-top:36px;border-top:1px solid var(--rule);padding:18px 0 0;
+    font-size:13px;color:var(--muted)}
+  footer h4{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.14em;
+    text-transform:uppercase;font-weight:500;margin:16px 0 6px;color:var(--ink)}
+  footer ul{margin:0;padding-left:1.1em}
+  .reset{margin-top:20px;background:none;border:1px solid var(--rule);color:var(--muted);
+    font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.08em;
+    padding:6px 12px;cursor:pointer;border-radius:2px}
+  .reset:hover{border-color:var(--eco);color:var(--eco)}
+  .status{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--muted);
+    padding:4px var(--sp)}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="spine">
+    <div class="counter" id="cEco">
+      <span class="lbl">Economics</span>
+      <span class="num" id="nEco">–</span>
+      <span class="sub">days · Thu 29 Oct · 11:45–14:00</span>
+    </div>
+    <div class="counter" id="cBm">
+      <span class="lbl">Business Mgmt</span>
+      <span class="num" id="nBm">–</span>
+      <span class="sub">days · Wed 4 Nov · 15:00–17:15</span>
+    </div>
+  </div>
+  <div class="meter"><i id="bar"></i></div>
+  <div class="meterlbl">
+    <span id="pct">0 of 0 tasks done</span>
+    <button class="jump" id="jump">Today ↓</button>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="intro">
+    <h1>Two exams.<br>Eighty days.</h1>
+    <p class="lede">Every day between now and the last paper has a named task for each subject. Nothing here says “revise Unit 3.” Open it in the morning, do the two blocks, tick them off.</p>
+    <div class="rules">
+      <h2>Six rules that make this work</h2>
+      <ol>
+        <li><strong>Swap days, never skip them.</strong> Football, a SAC, a bad day — move the block to the next free slot. A missed day is a debt, not a write-off.</li>
+        <li><strong>SACs override everything.</strong> In the four days before a SAC, the SAC content replaces that subject's block.</li>
+        <li><strong>Never mark your own paper without the examiner report open.</strong> Score per question type, not per paper.</li>
+        <li><strong>Rewriting beats redoing.</strong> A rewritten answer at full marks teaches more than a fresh paper.</li>
+        <li><strong>Write, don't read.</strong> If a task doesn't produce ink on paper, it didn't happen.</li>
+        <li><strong>Stop at 8:30pm the night before an exam.</strong> Non-negotiable.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div id="plan"></div>
+
+  <footer>
+    <h4>Where the material comes from</h4>
+    <ul>
+      <li><strong>VCAA past examinations + examiner reports</strong> — vcaa.vic.edu.au. Economics and Business Management 2023, 2024, 2025 sit on the current (2023–2027) study design. Papers from 2016–2022 are still worth doing for technique; check each question against the current dot points before you trust the content.</li>
+      <li><strong>The study designs themselves.</strong> Print the Unit 3 and Unit 4 dot points for both subjects and use them as a literal checklist. Every task below maps to one.</li>
+      <li><strong>Commercial trial exams</strong> — VCTA Compak, Neap, Insight, TSSM, Kilbaha. Use these once you've exhausted VCAA papers, not before.</li>
+      <li><strong>Economics data</strong> — ABS (CPI quarterly, Labour Force monthly, National Accounts, Balance of Payments), RBA (cash rate decisions, Statement on Monetary Policy), the 2026–27 Federal Budget papers.</li>
+      <li><strong>Business Management case study</strong> — must be a real business, change within the last four years. Australian, listed or large private, with reported KPI movement. Verify every figure you quote.</li>
+    </ul>
+    <h4>The two files you're building</h4>
+    <ul>
+      <li><strong>ECO VAULT</strong> — one page per AOS, plus a STATS card and a diagram sheet.</li>
+      <li><strong>BM VAULT</strong> — one page per AOS, plus a command-word card and three case studies.</li>
+    </ul>
+    <button class="reset" id="reset">Clear all ticks</button>
+    <div style="height:20px"></div>
+  </footer>
+</div>
+<div class="status" id="status"></div>
+
+<script>
+const ECO_DATE = new Date(2026,9,29,11,45);
+const BM_DATE  = new Date(2026,10,4,15,0);
+
+const PHASES = [
+ {n:"Phase 01", t:"Build the vault", d:"17 Aug – 20 Sep · Term 3. Condensed notes for every dot point in both subjects, plus a live statistics bank and a case-study bank. One diagnostic, one full paper. ~90 min a day on these two."},
+ {n:"Phase 02", t:"Spring blitz", d:"21 Sep – 4 Oct · Holidays. The single biggest lever in the whole plan. Full papers under time, marked the same day, weak answers rewritten. ~3 hrs a day on these two — leave room for English and General Maths."},
+ {n:"Phase 03", t:"Volume", d:"5 Oct – 18 Oct · Term 4, last classes. Paper after paper, then targeted repair of whatever the error log keeps showing. ~2 hrs a day."},
+ {n:"Phase 04", t:"Swot vac", d:"19 Oct – 25 Oct. English sits first on 27 Oct, so it takes the mornings. Economics and BM take the afternoons — both rehearsed at the exact clock time of the real paper."},
+ {n:"Phase 05", t:"Exam block", d:"26 Oct – 4 Nov. English 27th, Economics 29th, General Maths 30th and 2nd, BM 4th. BM has to already be finished before this week starts — it only gets Cup Day and evenings."}
+];
+
+// e = Economics tasks, b = BM tasks, p = phase index, note, hot
+const PLAN = [
+{d:"2026-08-17",p:0,note:"Diagnostic",e:["2025 VCAA Section A: 15 MC, 18 min, timed. Mark against the examiner report.","Start an ERROR LOG: question / my answer / correct / dot point / why I missed it. Every wrong answer goes in it from now until 29 Oct.","Set up ECO VAULT with a heading for every U3 and U4 dot point."],b:["Build the COMMAND WORD CARD: identify, outline, describe, explain, distinguish, compare, analyse, discuss, evaluate, justify, propose and justify. One line each on exactly what the structure must be.","Write the mark-to-structure rule: 2 marks = point + explanation. 4 = definition + two developed points, applied. 6 = three applied points. 8–10 = both sides + a judgement in the final sentence.","Set up BM VAULT with a heading for every U3 and U4 dot point."]},
+{d:"2026-08-18",p:0,e:["U3 AOS1: relative scarcity, opportunity cost, the three basic economic questions. Definitions from memory, then check.","The four efficiencies — allocative, productive/technical, dynamic, intertemporal. One-sentence definition plus one Australian example each."],b:["U3 AOS1: table the six business types — ownership, liability, sources of finance, one advantage, one disadvantage each.","The five business objectives with one real example each."]},
+{d:"2026-08-19",p:0,e:["Demand: the law, then the six shift factors. Draw a labelled diagram for each — axes P and Q, D1→D2, P1→P2, Q1→Q2.","Write why a change in price moves along the curve and a change in anything else shifts it. In your own words, three sentences."],b:["Six stakeholder groups, one interest each. Then write three specific conflicts between pairs of them.","CSR: define it, then write one CSR consideration for each of the five areas of management responsibility."]},
+{d:"2026-08-20",p:0,e:["Supply: the law, then the six shift factors, each with a labelled diagram.","Five scenarios (drought, rate cut, new technology, higher company tax, migration surge): predict the shift, the new equilibrium, and the direction of P and Q."],b:["4-mark practice, timed 5 min: “Explain one corporate social responsibility consideration when managing employees.” Self-mark.","Areas of management responsibility — the five — and how each one contributes to a stated business objective."]},
+{d:"2026-08-21",p:0,e:["Recall session: every definition from this week, written on blank paper, then checked. No reading."],b:["Blank-page the six business types and five objectives. Fill the gaps you find."]},
+{d:"2026-08-22",p:0,e:["2024 VCAA Section B, the microeconomics questions only, timed at 1.5 min per mark. Mark to the report, log the errors."],b:["Motivation theories. One page each on Maslow's five levels, Locke and Latham's five principles, Lawrence and Nohria's four drives: what it says, how a manager applies it, one strength, one weakness."]},
+{d:"2026-08-23",p:0,e:["Rewrite the two worst answers from yesterday to full marks, using the examiner report's own wording."],b:["10-mark practice, timed 12 min: “Compare Maslow's Hierarchy of Needs with Lawrence and Nohria's Four Drive Theory.” Self-mark against the criteria."]},
+
+{d:"2026-08-24",p:0,e:["Price elasticity of demand: formula, five numerical calculations, the four determinants, and the link to total revenue.","Sketch elastic, inelastic and unit-elastic demand curves and label what each means for a price rise."],b:["Table the five motivation strategies — performance-related pay, career advancement, investment in training, support, sanction. Short-term effect, long-term effect, cost, one real example each."]},
+{d:"2026-08-25",p:0,e:["Price elasticity of supply: four determinants. Then explain how PES and PED together decide who actually bears an indirect tax — with a diagram.","Add both elasticity diagrams to the DIAGRAM SHEET."],b:["On-the-job vs off-the-job training: three advantages and three disadvantages each, then link both to a business objective.","4-mark practice: “Distinguish between on-the-job and off-the-job training.” 5 min."]},
+{d:"2026-08-26",p:0,e:["Market failure — public goods. Non-rival, non-excludable, the free rider problem, two examples, and why the market under-provides them."],b:["Performance management: management by objectives, appraisals, self-evaluation, employee observation. What it is, one advantage, one disadvantage, effect on motivation."]},
+{d:"2026-08-27",p:0,e:["Externalities: all four types (positive and negative, production and consumption). Diagram with MSC and MPC for each, two Australian examples each, one government response each."],b:["10-mark practice, timed 12 min: “Evaluate the use of management by objectives as a performance management strategy.” Judgement in the last sentence."]},
+{d:"2026-08-28",p:0,e:["Asymmetric information and common access resources: define both, three examples each, one intervention each."],b:["Blank-page recall: all three motivation theories and all five strategies."]},
+{d:"2026-08-29",p:0,e:["2023 VCAA Section B microeconomics questions, timed. Mark and log."],b:["Termination: retirement, redundancy (voluntary and involuntary), resignation, dismissal, unfair dismissal. Table with entitlements and transition issues for each."]},
+{d:"2026-08-30",p:0,e:["Rework yesterday's errors. Then write the “unintended consequences” note — five cases where an intervention backfired (tobacco excise, rent controls, subsidies, plastic bans, minimum wage)."],b:["Rewrite Thursday's 10-marker using the report's language. Compare the two versions side by side and note what changed."]},
+
+{d:"2026-08-31",p:0,e:["U3 AOS2 — economic growth. Definition, GDP vs real GDP, how it's measured, the goal rate. Then the seven aggregate demand factors and five aggregate supply factors."],b:["U3 AOS2 — workplace relations. The five participants (HR manager, employees, employer associations, unions, Fair Work Commission): role in one sentence, one example each."]},
+{d:"2026-09-01",p:0,e:["Consequences of achieving and not achieving strong and sustainable growth. Then write your reusable LIVING STANDARDS sentence — the one you'll append to every macro answer, covering both material and non-material."],b:["Awards vs enterprise agreements: who negotiates, how each is made, two differences. Then mediation vs arbitration — who decides, and is it binding."]},
+{d:"2026-09-02",p:0,e:["Inflation: how the CPI is built, headline vs underlying (trimmed mean), the RBA's target. Four demand-pull and four cost-push causes with current Australian examples."],b:["8-mark practice, timed 10 min: “Analyse the role of the Fair Work Commission and one other participant in resolving a workplace dispute.”"]},
+{d:"2026-09-03",p:0,e:["Five consequences of high inflation and five of inflation that's too low. Link each to living standards."],b:["Start U3 AOS3. Inputs, processes, outputs mapped for one manufacturer and one service business. Then four differences between manufacturing and service operations."]},
+{d:"2026-09-04",p:0,e:["Update the STATS CARD: latest CPI headline and trimmed mean (quarterly and annual), unemployment rate, participation rate, real GDP growth. Source and date next to each figure."],b:["Blank-page the whole workplace relations map — participants, instruments, dispute resolution."]},
+{d:"2026-09-05",p:0,e:["Unemployment: the labour force framework, every definition (unemployed, participation rate, underemployment, hidden, long-term), the NAIRU, four types with a cause each, five consequences.","Then 2024 VCAA Section B macro questions, timed. Mark."],b:["Technological developments: automated production lines, robotics, CAD, CAM, artificial intelligence, online services. For each — what it is, one advantage, one disadvantage, and its effect on efficiency AND effectiveness."]},
+{d:"2026-09-06",p:0,e:["Write three trade-offs and three complementarities between the three domestic goals, each as a full cause-and-effect chain."],b:["6-mark answer applying two technological developments to a manufacturing business. Name the business in every paragraph."]},
+
+{d:"2026-09-07",p:0,e:["Balance of payments structure. Current account (net goods, net services, net primary income, net secondary income) and the capital and financial account. Draw the whole structure from memory, twice."],b:["Materials management: forecasting, master production schedule, materials requirement planning, just in time. Definition, purpose, one advantage, one disadvantage each."]},
+{d:"2026-09-08",p:0,e:["Exchange rates: six factors shifting demand for the AUD and six shifting supply. Then appreciation vs depreciation and their effect on exports, imports, inflation, growth and the current account."],b:["Quality control vs quality assurance vs total quality management: cost, timing, staff involvement, effect on wastage. Then a 6-mark comparison of two of them."]},
+{d:"2026-09-09",p:0,e:["Terms of trade: definition, formula, and what an improvement and a deterioration each do to national income, the AUD, the current account and living standards."],b:["Waste minimisation and lean management: pull, one-piece flow, takt time, zero defects. Define each and explain exactly how it removes waste."]},
+{d:"2026-09-10",p:0,e:["Globalisation and trade liberalisation: four effects on each of the three domestic goals, plus three costs. Name two free trade agreements and their effect on Australia."],b:["Global considerations: global sourcing of inputs, overseas manufacture, global outsourcing. Two advantages, two disadvantages and one CSR issue for each."]},
+{d:"2026-09-11",p:0,e:["STATS CARD update: current AUD/USD, direction of the terms of trade, current account balance as a share of GDP."],b:["Blank-page the entire operations AOS on one sheet as a map. Photograph it — this becomes a revision asset."]},
+{d:"2026-09-12",p:0,e:["Full Section A (15 MC) plus the international questions from both 2023 and 2024, timed. Mark both."],b:["2025 VCAA Section A case study in full, under exam timing. Mark to the report."]},
+{d:"2026-09-13",p:0,e:["Error log audit. Sort every error so far by area of study. Name your three weakest dot points and write them at the top of the log."],b:["Rewrite the two lowest-scoring answers from yesterday. Check each one names the business by name at least three times."]},
+
+{d:"2026-09-14",p:0,e:["U4 AOS1 — budgetary policy. Four main receipts, four main outlays, the budget outcomes (underlying cash, headline, fiscal), and how to identify the stance from a set of figures."],b:["U4 AOS1 — the ten key performance indicators. Define each in one line and mark whether it measures efficiency, effectiveness, or both."]},
+{d:"2026-09-15",p:0,e:["Automatic vs discretionary stabilisers: two examples each and exactly how they work counter-cyclically. Then three ways to finance a deficit and three uses of a surplus, with a consequence each."],b:["For each of the ten KPIs, write one management strategy that would improve it — and say why that strategy targets that KPI specifically."]},
+{d:"2026-09-16",p:0,e:["Five specific initiatives from the most recent Federal Budget. For each: which goal it targets, the transmission mechanism, and the effect on living standards."],b:["Porter's generic strategies. Lower cost vs differentiation: definition, three tactics each, one risk each, and two real businesses that use each."]},
+{d:"2026-09-17",p:0,e:["Monetary policy: the RBA, the cash rate, and all five transmission channels — savings and investment, cash flow, asset prices and wealth, exchange rate, credit availability. Write the complete chain for a rate rise, channel by channel."],b:["Lewin's Force Field Analysis: driving forces, restraining forces, weighting. Then run a full analysis for a named business scenario, with weights and a total."]},
+{d:"2026-09-18",p:0,note:"Term 3 ends",e:["Strengths and weaknesses of monetary vs budgetary policy — implementation lag, impact lag, political constraints, ability to target. One table."],b:["Lewin's three-step model: unfreeze, change, refreeze. Two concrete management actions at each step."]},
+{d:"2026-09-19",p:0,note:"First full paper",e:["2023 VCAA Economics exam in full. Two hours, no notes, timed. Then mark it against the report — every mark."],b:["Light: read one recent article on an Australian business going through change. Note which KPIs the article mentions."]},
+{d:"2026-09-20",p:0,e:["Full mark-up of yesterday's paper. Rewrite every answer that scored under 70%."],b:["Case study bank: pick three Australian businesses that have transformed since 2023. Start a page on each — what changed, why, KPIs before, KPIs after."]},
+
+{d:"2026-09-21",p:1,e:["U4 AOS2 — aggregate supply policies. The rationale: productive capacity, efficiency, productivity, cost of production. Then six budgetary supply-side policies with a current example each."],b:["U4 AOS2 — four strategies for overcoming employee resistance: communication, empowerment, support, incentives. Definition, example, one strength, one limitation each."]},
+{d:"2026-09-22",p:1,e:["Other aggregate supply policies: trade liberalisation, deregulation, competition policy, labour market reform, energy and climate policy, skilled migration. For each — mechanism, which goal, effect on living standards."],b:["Senge's Learning Organisation: the five disciplines. Define each and give one action a manager would take under it during a transformation."]},
+{d:"2026-09-23",p:1,note:"Full paper",e:["2024 VCAA Economics exam, two hours, timed. Mark it the same day — not tomorrow."],b:["Effect of change on all six stakeholder groups: owners, managers, employees, customers, suppliers, the community. One positive and one negative each."]},
+{d:"2026-09-24",p:1,e:["Rewrite every answer from yesterday that scored under 70%. Update the error log and re-rank your weak dot points."],b:["Classify eight change strategies as low-risk or high-risk, and write when each is the right call."]},
+{d:"2026-09-25",p:1,e:["Diagram drill: twelve diagrams from memory in 40 minutes. Six demand and supply shifts, two externalities, two tax-incidence diagrams, one subsidy, one price ceiling. Every axis and curve labelled."],b:["Case study 1: full two-page transformation analysis using Force Field Analysis, Lewin's three steps, and KPIs before and after."]},
+{d:"2026-09-26",p:1,note:"Full paper",e:["2022 VCAA Section B only, 90 minutes. Skip anything off the current design. Mark."],b:["2024 VCAA Business Management exam in full, two hours, timed. Mark it the same day."]},
+{d:"2026-09-27",p:1,note:"Rest day",e:["30 minutes of recall only. Read the STATS card, nothing else."],b:["30 minutes of recall only. Blank-page the theory names. Then stop."]},
+{d:"2026-09-28",p:1,e:["Policy mix: four scenarios — recession, high inflation, high unemployment with high inflation, a boom. Write the exact combination of AD and AS policy for each, with justification."],b:["Rewrite every answer from Saturday's paper that scored under 70%."]},
+{d:"2026-09-29",p:1,e:["Build the LIVING STANDARDS bank: ten sentences linking a policy or goal to both material and non-material living standards. These get memorised."],b:["Case study 2: full write-up."]},
+{d:"2026-09-30",p:1,note:"Full paper",e:["2025 VCAA Economics exam, two hours, timed. Mark same day."],b:["Rapid re-sweep: blank-page the entire managing employees AOS in 45 minutes. Check against the vault."]},
+{d:"2026-10-01",p:1,e:["Rewrite the sub-70% answers. Then compare the 2023, 2024 and 2025 papers and list the eight topics that appeared in all three."],b:["2023 VCAA Business Management exam in full, timed. Mark."]},
+{d:"2026-10-02",p:1,e:["Weak-topic repair 1: take the top three from your error log. Re-learn each, then answer three past questions on each."],b:["Rewrite yesterday's sub-70% answers. Then blank-page the whole of U4 AOS1."]},
+{d:"2026-10-03",p:1,e:["A commercial trial exam (Neap, Insight, TSSM or Kilbaha), timed. Mark to its solutions — but trust the VCAA report over any commercial one where they disagree."],b:["Case study 3: full write-up. Then choose which of your three is the primary one you'll take into the exam, and say why."]},
+{d:"2026-10-04",p:1,note:"Rest day",e:["30 minutes recall. Then close the books."],b:["30 minutes recall. Then close the books."]},
+
+{d:"2026-10-05",p:2,e:["Section A drill: 45 multiple choice pulled from three different papers, 45 minutes. Mark and log every miss by dot point."],b:["2022 Section A case study, timed. Do it for technique — check each question against the current design before trusting the content."]},
+{d:"2026-10-06",p:2,e:["Full Section B from a commercial trial, 90 minutes timed."],b:["Four 10-mark responses in 48 minutes total: one evaluate, one discuss, one analyse, one propose and justify."]},
+{d:"2026-10-07",p:2,e:["Mark yesterday's Section B properly. Rewrite the three weakest answers."],b:["Mark yesterday's four. Check every one names the business and ends on a judgement. Count how many failed each test."]},
+{d:"2026-10-08",p:2,e:["Weak-topic repair 2: next three from the error log."],b:["Full Business Management trial exam, two hours, timed."]},
+{d:"2026-10-09",p:2,e:["Final STATS CARD build. CPI, unemployment, participation, real GDP growth, cash rate, AUD, budget outcome, terms of trade. Then memorise it — recite from blank."],b:["Mark yesterday's trial. Update the error log."]},
+{d:"2026-10-10",p:2,note:"Full paper",e:["2021 or 2020 VCAA exam, adapted to the current design, two hours timed. Mark."],b:["Write your primary case study from memory in 15 minutes. Then adapt it to three different question stems without changing the facts."]},
+{d:"2026-10-11",p:2,e:["Rewrite every answer from yesterday under 75%. The bar has moved."],b:["Blank-page U4 AOS2 in full: resistance strategies, Senge's five disciplines, stakeholder effects, CSR considerations."]},
+{d:"2026-10-12",p:2,e:["2019 VCAA Section B, the policy questions. Timed."],b:["Six 4-mark responses in 24 minutes: distinguish, describe, outline, explain — all on operations content."]},
+{d:"2026-10-13",p:2,e:["Mark and rewrite. Then twelve diagrams in 30 minutes — faster than last time."],b:["Six 6-mark responses: analyse and discuss, on managing employees."]},
+{d:"2026-10-14",p:2,note:"Full paper",e:["Second commercial trial, full, timed."],b:["Mark Monday's and Tuesday's sets. Count how many opened with a definition. Every one should have."]},
+{d:"2026-10-15",p:2,e:["Mark yesterday's trial. Rewrite everything under 80% now."],b:["Second full Business Management trial, timed."]},
+{d:"2026-10-16",p:2,e:["Weak-topic repair 3. Whatever is still in the error log after eight weeks is the real problem — fix it today."],b:["Mark yesterday's paper. Then rewrite the five weakest answers of the week."]},
+{d:"2026-10-17",p:2,e:["Speed drill: 30 multiple choice in 25 minutes. Then three evaluate-style questions back to back."],b:["Rewrite anything still outstanding. Nothing new."]},
+{d:"2026-10-18",p:2,note:"Build the one-pagers",e:["ECO ONE-PAGER: STATS card, twelve diagrams, ten living-standards sentences, and the five policy transmission chains. One sheet, both sides. This is the only thing you read on 28 October."],b:["BM ONE-PAGER: every theory, the ten KPIs, the command-word structures, and your case study skeleton. One sheet. This is the only thing you read on 3 November."]},
+
+{d:"2026-10-19",p:3,note:"Exam-time rehearsal",e:["Full VCAA exam sat between 11:45 and 13:45 — the real clock. Mark it."],b:["One hour: every theory from blank paper. Names, components, applications."]},
+{d:"2026-10-20",p:3,e:["Rewrite every answer below full marks. Specifically fix the closing sentence of each — every macro answer ends on living standards."],b:["Full Business Management exam sat between 15:00 and 17:00 — the real clock."]},
+{d:"2026-10-21",p:3,e:["Every evaluate and discuss question from the 2023–2025 papers, back to back, 60 minutes."],b:["Mark yesterday's paper. Rewrite both 10-markers to full marks."]},
+{d:"2026-10-22",p:3,e:["Policy chains out loud. Deficit → AD → growth → employment → living standards. Rate rise → five channels → inflation → living standards. Each under 60 seconds, no notes."],b:["Eight 10-mark responses in 96 minutes. This is the mark ceiling in BM — treat it as the main event."]},
+{d:"2026-10-23",p:3,note:"Last full paper",e:["Final full timed Economics exam. Mark it."],b:["Mark yesterday's eight. Rewrite the two weakest."]},
+{d:"2026-10-24",p:3,e:["Close out the error log. Every remaining unresolved item, resolved today."],b:["Final full Business Management exam under real conditions. Mark it."]},
+{d:"2026-10-25",p:3,e:["Read the one-pager. 30 multiple choice. Stop."],b:["Mark yesterday's paper. Note the top three errors only — nothing else."]},
+
+{d:"2026-10-26",p:4,note:"English tomorrow",e:["Read the one-pager, 15 MC. Twenty minutes maximum."],b:["Read the theory sheet. Fifteen minutes. Nothing else."]},
+{d:"2026-10-27",p:4,note:"English exam 09:00",hot:1,e:["Afternoon only: one past Section B under time. Mark it fast. Evening: STATS card, out loud, until it's automatic."],b:["Nothing today."]},
+{d:"2026-10-28",p:4,note:"Economics eve",hot:1,e:["09:00 — 30 multiple choice.","11:45–12:45 — half a paper at the exam's own clock time.","Afternoon — the twelve diagrams, from memory, one last time.","Evening — STATS card and the ten living-standards sentences. Stop at 20:30. Bag packed, alarm set."],b:["Nothing today."]},
+{d:"2026-10-29",p:4,note:"ECONOMICS EXAM 11:45",hot:1,e:["08:00–10:30 — one-pager, ten MC, three diagrams. No new content, no new papers.","Leave by 11:00. Reading time: scan the whole paper, mark the extended-response questions, start where you're strongest.","1.5 minutes per mark. Every macro answer closes on living standards."],b:["Nothing. Rest after the exam — General Maths Exam 1 is tomorrow."]},
+{d:"2026-10-30",p:4,note:"General Maths 1, 14:00",e:["Done. Nothing further."],b:["Evening, 60 minutes: blank-page every theory. BM restarts now."]},
+{d:"2026-10-31",p:4,e:["Done."],b:["Two hours: full timed exam. Mark it. Rest of the day is General Maths."]},
+{d:"2026-11-01",p:4,e:["Done."],b:["90 minutes: rewrite the four weakest answers from yesterday. Then rehearse the case study from memory."]},
+{d:"2026-11-02",p:4,note:"General Maths 2, 14:00",e:["Done."],b:["Evening, 90 minutes: four 10-mark responses, timed."]},
+{d:"2026-11-03",p:4,note:"Cup Day — full BM day",hot:1,e:["Done."],b:["09:00–11:00 — full timed exam.","11:30–12:30 — mark it against the report.","14:00–15:30 — rewrite the weakest answers.","16:00–17:00 — blank-page every theory and the ten KPIs.","Evening — one-pager only. Stop at 20:30."]},
+{d:"2026-11-04",p:4,note:"BUSINESS MANAGEMENT EXAM 15:00",hot:1,e:["Done."],b:["Morning: one-pager, command-word card, case study skeleton. Sixty minutes, finished by 11:00.","Eat properly at 12:30. Arrive by 14:30.","Reading time: identify the command word in every question before you write a single word.","1.2 minutes per mark. Name the business in every answer. Every 10-marker ends on a judgement."]}
+];
+
+const DOW=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+const MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+let state={};
+const KEY="vce-eco-bm-2026";
+
+function parse(s){const[a,b,c]=s.split("-").map(Number);return new Date(a,b-1,c);}
+function dayDiff(a,b){return Math.ceil((b-a)/86400000);}
+
+function render(){
+  const root=document.getElementById("plan");
+  const now=new Date(); const today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  let lastPhase=-1; let html="";
+  PLAN.forEach((day,i)=>{
+    if(day.p!==lastPhase){
+      const ph=PHASES[day.p];
+      html+=`<div class="phase"><span class="no">${ph.n}</span><h3>${ph.t}</h3><p>${ph.d}</p></div>`;
+      lastPhase=day.p;
+    }
+    const dt=parse(day.d);
+    const isToday=dt.getTime()===today.getTime();
+    const isPast=dt<today;
+    const de=dayDiff(dt,parse("2026-10-29")); const db=dayDiff(dt,parse("2026-11-04"));
+    html+=`<div class="day${isToday?" today":""}${isPast?" past":""}" id="d${i}">
+      <div class="dhead">
+        <span class="ddate">${DOW[dt.getDay()]} ${dt.getDate()} ${MON[dt.getMonth()]}</span>
+        <span class="dtick">E−${de} · B−${db}</span>
+      </div>`;
+    if(day.note)html+=`<span class="dnote${day.hot?" hot":""}">${day.note}</span>`;
+    [["e","Economics",day.e],["b","Business Management",day.b]].forEach(([k,label,tasks])=>{
+      if(!tasks||!tasks.length)return;
+      html+=`<div class="blk ${k}"><span class="tag">${label}</span>`;
+      tasks.forEach((t,j)=>{
+        const id=`${i}-${k}-${j}`;
+        html+=`<label class="t"><input type="checkbox" data-id="${id}"${state[id]?" checked":""}><span>${t}</span></label>`;
+      });
+      html+=`</div>`;
+    });
+    html+=`</div>`;
+  });
+  root.innerHTML=html;
+  root.querySelectorAll("input[type=checkbox]").forEach(cb=>{
+    cb.addEventListener("change",()=>{
+      const id=cb.dataset.id;
+      if(cb.checked)state[id]=1;else delete state[id];
+      save();updateMeter();
+    });
+  });
+  updateMeter();
+}
+
+let total=0;
+function countTotal(){
+  total=0;PLAN.forEach(d=>{total+=(d.e||[]).length+(d.b||[]).length;});
+}
+function updateMeter(){
+  const done=Object.keys(state).length;
+  document.getElementById("bar").style.width=(total?done/total*100:0)+"%";
+  document.getElementById("pct").textContent=`${done} of ${total} tasks done`;
+}
+function updateCounters(){
+  const n=new Date();
+  const e=Math.max(0,Math.ceil((ECO_DATE-n)/86400000));
+  const b=Math.max(0,Math.ceil((BM_DATE-n)/86400000));
+  document.getElementById("nEco").textContent=e;
+  document.getElementById("nBm").textContent=b;
+}
+/* Storage works two ways: inside Claude it uses window.storage,
+   on a hosted page (GitHub Pages, Home Screen app) it uses localStorage. */
+const store={
+  async get(){
+    if(window.storage&&window.storage.get){
+      try{const r=await window.storage.get(KEY);return r&&r.value?r.value:null;}catch(e){}
+    }
+    try{return localStorage.getItem(KEY);}catch(e){return null;}
+  },
+  async set(v){
+    if(window.storage&&window.storage.set){
+      try{await window.storage.set(KEY,v);return true;}catch(e){}
+    }
+    try{localStorage.setItem(KEY,v);return true;}catch(e){return false;}
+  },
+  async clear(){
+    if(window.storage&&window.storage.delete){try{await window.storage.delete(KEY);}catch(e){}}
+    try{localStorage.removeItem(KEY);}catch(e){}
+  }
+};
+
+let saveTimer;
+function save(){
+  clearTimeout(saveTimer);
+  saveTimer=setTimeout(async()=>{
+    const ok=await store.set(JSON.stringify(state));
+    setStatus(ok?"Progress saved.":"Progress isn't saving here — ticks will disappear when you close the page. Open it from a hosted link instead of a downloaded file.");
+  },400);
+}
+function setStatus(m){document.getElementById("status").textContent=m;}
+
+async function load(){
+  setStatus("Loading your progress…");
+  try{
+    const v=await store.get();
+    if(v)state=JSON.parse(v);
+  }catch(err){state={};}
+  setStatus("");
+  countTotal();render();updateCounters();
+}
+
+document.getElementById("jump").addEventListener("click",()=>{
+  const el=document.querySelector(".day.today")||document.querySelector(".day:not(.past)");
+  if(el)el.scrollIntoView({behavior:"smooth",block:"start"});
+});
+document.getElementById("reset").addEventListener("click",async()=>{
+  state={};
+  await store.clear();
+  render();setStatus("All ticks cleared.");
+});
+
+load();
+setInterval(updateCounters,60000);
+</script>
+</body>
+</html>
